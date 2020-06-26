@@ -18,9 +18,11 @@ with open(csvpath) as budgetdata:
         monthlyvalue=int(row[1])
         totalprofit = totalprofit + monthlyvalue # net amount of profit/losses
     for x in range(1,len(rowcount)):
-            monthlyrev.append(int(rowcount[x])-int(rowcount[x-1]))                      
-       
+        monthlyrev.append(int(rowcount[x])-int(rowcount[x-1]))                      
+
+
 print("Total Months: " + str(len(rowcount)))
 print("Total is $" + str(totalprofit))
-print("$"+str(round(sum(monthlyrev)/(len(rowcount)-1),2)))    
-budgetdata.close()
+print("Average Change: $"+str(round(sum(monthlyrev)/(len(rowcount)-1),2)))    
+print("Greatest increase in PRofits: $"+ str(max(monthlyrev)))      
+print("Greatest Decrease in Profits: $"+ str(min(monthlyrev)))
