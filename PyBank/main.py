@@ -7,23 +7,20 @@ with open(csvpath) as budgetdata:
     csvreader = csv.reader(budgetdata, delimiter=",")
    
     next(budgetdata) #skip header
-    rowcount = 0
+    rowcount = []
     totalprofit = 0
     totalchange = 0
-    monthlychange = 0
+    prevvalue = 0
+    totalrev = 0
+    monthlyrev = []
     for row in csvreader: 
-        rowcount = rowcount + 1  #Total months included in dataset
-        totalprofit = totalprofit + int(row[1]) # net amount of profit/losses
-        for x in range(rowcount):
-            monthlychange = x+1(int(row[1])) - x(int(row[1]))
-            print(monthlychange) 
-        
-
-
-
-
-
-#print("Total Months: " + str(rowcount))
-#print("Total is $" + str(totalprofit))
-    
+        rowcount.append(row[1])  #add values to list rowcount
+        monthlyvalue=int(row[1])
+        totalprofit = totalprofit + monthlyvalue # net amount of profit/losses
+    for x in range(1,len(rowcount)):
+            monthlyrev.append(int(rowcount[x])-int(rowcount[x-1]))                      
+       
+print("Total Months: " + str(len(rowcount)))
+print("Total is $" + str(totalprofit))
+print("$"+str(round(sum(monthlyrev)/(len(rowcount)-1),2)))    
 budgetdata.close()
