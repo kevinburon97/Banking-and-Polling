@@ -30,22 +30,31 @@ with open(csvpath) as electiondata:
     pctgLi =  len(Li)/len(totalrows)
     pctgCorrey =  len(Correy)/len(totalrows)
     pctgOTooley =  len(OTooley)/len(totalrows)
-print("Election Results:")
-print( "---------------------------------")
-print("Total Votes:" + str(len(totalrows)))
-print( "---------------------------------")
-print("Candidates:")
-print("Khan: " + format(pctgKhan,".2%") + " total votes: ("+ str(len(Khan)) + ")")
-print("Li: " + format(pctgLi,".2%") + " total votes: ("+ str(len(Li)) + ")")
-print("Correy: " + format(pctgCorrey,".2%")+ " total votes: ("+ str(len(Correy)) + ")")
-print("O'Tooley: " + format(pctgOTooley,".2%") + " total votes: ("+ str(len(OTooley)) + ")")
-print( "---------------------------------")
+
 #Find which candidate had the most votes and keep the # of votes under winner
 winner = max(len(Khan),len(Li),len(Correy),len(OTooley))
 #Create a dictionary listing the votes of each candidate with their name as a value
 biglist = {len(Khan): "Khan", len(Li): "Li", len(Correy): "Correy", len(OTooley): "O'Tooley"}
-#Go through the dictionary and print the one that matches winner
+#Go through the dictionary and place the name of the winner on winner2
 for x in biglist:
     if winner == x:
-       print("And the winner is: " +biglist.get(x))    
-print("---------------------------------")
+         winner2 = biglist.get(x) 
+output = (
+f"Election Results:\n"
+f"---------------------------------\n"
+f"Total Votes:{len(totalrows)}\n"
+f"---------------------------------\n"
+f"Candidates:\n"
+f"Khan: {(pctgKhan*100):.2f}% total votes: ({len(Khan)})\n"
+f"Li: {(pctgLi*100):.2f}% total votes: ({len(Li)})\n"
+f"Correy: {(pctgCorrey*100):.2f}% total votes: ({len(Correy)})\n"
+f"O'Tooley: {(pctgOTooley*100):.2f}% total votes: ({len(OTooley)})\n"
+f"---------------------------------\n"
+f"And the winner is: {winner2}\n"
+
+  
+f"---------------------------------\n")
+print(output)
+outputpath = os.path.join("Analysis", "Analysis.txt")
+with open(outputpath, "w") as txt_file:
+    txt_file.write(output)
