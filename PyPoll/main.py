@@ -56,5 +56,6 @@ f"And the winner is: {winner2}\n"
 f"---------------------------------\n")
 print(output)
 outputpath = os.path.join("Analysis", "Analysis.txt")
+#Create a text file with the output
 with open(outputpath, "w") as txt_file:
     txt_file.write(output)
